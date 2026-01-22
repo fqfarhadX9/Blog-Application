@@ -53,5 +53,7 @@ router.post("/comment/:blogId", async(req, res) => {
   return res.redirect(`/blog/${req.params.blogId}`)
 })
 
+// comments
+
 
 module.exports = router
