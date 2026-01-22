@@ -7,9 +7,11 @@ function checkAuthenticationCookie(cookieName) {
                 return next();
             }
         try {
-            const userPayload = validateToken(tokenCookieValue);
-            req.user = userPayload;
-        } catch (error) {}
+            req.user =validateToken(tokenCookieValue);
+            req.user = userPayload
+        } catch (error) {
+            console.log(error);
+        }
         return next();
     }
 }
