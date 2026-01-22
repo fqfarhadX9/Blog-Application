@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>HomePage</title>
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            max-width: 1200px;
+        }
+
+        /* Popular Posts Section */
+        .popular-section {
+            margin-bottom: 40px;
+        }
+
+        .popular-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .popular-wrapper {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 12px;
+        }
+
+        .popular-card {
+            flex: 0 0 320px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .popular-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        .popular-image {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            background-color: #f3f4f6;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .popular-content {
+            padding: 14px;
+        }
+
+        .popular-title-card {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            height: 48px;
+            overflow: hidden;
+        }
+
+        .popular-read {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .popular-read:hover {
+            background: #1e3a8a;
+            transform: scale(1.05);
+        }
+
+        /* Blog Card Styling */
+        .blog-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+            padding: 20px;
+            height: 350px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            margin-bottom: 25px;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Blog Image */
+        .blog-image {
+            width: 45%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+            background-color: #f3f4f6;
+        }
+
+        /* Blog Content */
+        .blog-content {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            max-height: 70px;
+            overflow: hidden;
+        }
+
+        .blog-excerpt {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            max-height: 110px;
+            overflow: hidden;
+        }
+
+        .btn-read {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .btn-read:hover {
+            background: #1e3a8a;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .blog-card {
+                flex-direction: column;
+                height: auto;
+                text-align: center;
+            }
+
+            .blog-image {
+                width: 100%;
+                height: 220px;
+            }
+
+            .blog-content {
+                width: 100%;
+                padding-top: 12px;
+            }
+
+            .popular-wrapper {
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="container">
+        <div class="popular-section">
+            <h2 class="popular-title">Popular Posts</h2>
+            <div class="popular-wrapper">
+                <% blogs.slice(0, 5).forEach(blog => { %>
+                    <div class="popular-card">
+                        <img src="<%= blog.coverImageUrl %>" alt="<%= blog.title %>" class="popular-image">
+                        <div class="popular-content">
+                            <h3 class="popular-title-card"><%= blog.title %></h3>
+                            <a href="/blog/<%= blog._id %>" class="popular-read">Read</a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <% blogs.forEach(blog => { %>
+                <div class="col-12">
+                    <div class="blog-card">
+                        <img src="<%= blog.coverImageUrl %>" alt="<%= blog.title %>" class="blog-image">
+
+                        <div class="blog-content">
+                            <h5 class="blog-title"><%= blog.title %></h5>
+                            <p class="blog-excerpt">
+                                <%= blog.body.length > 250 ? blog.body.substring(0, 250) + "..." : blog.body %>
+                            </p>
+                            <a href="/blog/<%= blog._id %>" class="btn-read">Read Story</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <%- include('./partials/scripts.ejs') %>
+</body>
+</html>
