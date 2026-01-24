@@ -165,12 +165,14 @@
 
             <!-- Blog Intro Text -->
             <div class="blog-intro">
-                <h3>About This Blog</h3>
+                <h3>About This Blogify Web Application</h3>
                 <p>
-                    Welcome to my developer journey! Here, I share insights, coding tips,  
-                    creative solutions, and the exciting challenges I face while building amazing projects.  
-                    This blog is my way of documenting the journey from bugs to breakthroughs —  
-                    and everything in between!
+                    Welcome to my developer journey! Here, I share 
+                    insights, coding tips, creative solutions, and 
+                    the exciting challenges I face while building 
+                    amazing projects. I also love covering trending 
+                    topics in entertainment — from movies and sports 
+                    to social media buzz — keeping things fun and engaging for everyone.
                 </p>
             </div>
         </div>
@@ -184,9 +186,9 @@
 
         <!-- Author Info -->
         <div class="author-card mb-4">
-            <img src="<%= blog.createdBy.profileImageUrl || '/images/default.png' %>" alt="Author">
+            <img src="<%= blog.createdBy? blog.createdBy.profileImageUrl : '/images/default.png' %>" alt="Author">
             <div>
-                <h5 class="mb-0 text-capitalize"><%= blog.createdBy.fulName %></h5>
+                <h5 class="mb-0 text-capitalize"><%= blog.createdBy ? blog.createdBy.fulName : 'Unknown Author' %></h5>
                 <small class="text-muted">Author</small>
             </div>
         </div>
