@@ -8,7 +8,7 @@ const checkAuthenticationCookie = require("./middlewares/authentication");
 const blogRoute = require("./routes/blog");
 const Blogs = require("./models/blog")
 
-const PORT = process.env.PORT ||8000;
+const PORT = process.env.PORT ||8001;
 const app = express();
 
 mongoose.connect(process.env.MONGO_URL);
